@@ -54,4 +54,26 @@ public class usuarioDAO {
         }
 
     }
+    public void editarUsuario(usuario usuario){
+         
+        this.u1 = usuario;
+        conexao nova_conexao = new conexao();
+        Connection conectar = nova_conexao.getConexao();
+        PreparedStatement preparar = null;
+        
+        try {
+            String query = "UPDATE usuario SET nome = ?, email = ?, senha = ? WHERE cpf = ?";
+            preparar = conectar.prepareStatement(query);           
+            preparar.setString(1,usuario.getNome());
+            preparar.setString(2,usuario.getEmail());
+            preparar.setString(3,usuario.getSenha());
+            preparar.setString(4,usuario.getCpf());
+           
+
+            preparar.execute();
+
+        } catch (SQLException erro_cadastrar_usuario) {
+            System.out.println("Erro ao editar o usuário no banco de dados!\n" + erro_cadastrar_usuario.getMessage());
+        }        
+    }
 }

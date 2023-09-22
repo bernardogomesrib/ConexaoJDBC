@@ -1,32 +1,32 @@
 package entity;
 
-public class produto {
+public class Produto {
 
-    private static int codigo;
-    private static String descricao;
-    private static double valor;
+    private int codigo;
+    private String descricao;
+    private double valor;
     
-    public static void setCodigo(int codigo) {
-        produto.codigo = codigo;
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
     
-    public static void setDescricao(String descricao) {
-        produto.descricao = descricao;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
     
-    public static void setValor(double valor) {
-        produto.valor = valor;
+    public void setValor(double valor) {
+        this.valor = valor;
     }
 
-    public static int getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public static String getDescricao() {
+    public String getDescricao() {
         return descricao;
     }
 
-    public static double getValor() {
+    public double getValor() {
         return valor;
     }
 

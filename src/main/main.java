@@ -4,16 +4,16 @@ import java.util.Scanner;
 
 import DAO.produtoDAO;
 import DAO.usuarioDAO;
-import entity.produto;
+import entity.Produto;
 import entity.usuario;
 
-public class main {
+public class Main {
     
     public static void main (String[] args) {
 
         Scanner ler = new Scanner(System.in);
         usuario pessoa = new usuario();
-        produto produto = new produto();
+        Produto produto = new Produto();
         usuarioDAO usuario = new usuarioDAO();
         produtoDAO produtoDAO = new DAO.produtoDAO();
         int menu=99;
@@ -26,7 +26,7 @@ public class main {
             case 1:
                 int opcao_usuario = 3;
 
-                System.out.print("[1] Cadastrar usuario\n[2] Consultar usuario\nInforme a opção desejada: ");
+                System.out.print("[1] Cadastrar usuario\n[2] Consultar usuario\n[3] Editar usuário\nInforme a opção desejada: ");
                 opcao_usuario = ler.nextInt();
 
                 if (opcao_usuario == 1) {
@@ -46,7 +46,7 @@ public class main {
                     usuario.cadastrar_usuario(pessoa);
                 
                 }  else if (opcao_usuario == 2) {
-
+                    System.out.println("Consultando usuário");
                     System.out.print("Informe o CPF no formato '000.000.000-00': ");
                     pessoa.setCpf(ler.next());
 
@@ -56,6 +56,45 @@ public class main {
                                 + "\nNome: " + pessoa.getNome()
                                 + "\nEmail: " + pessoa.getEmail()
                                 + "\nSenha: " + pessoa.getSenha());
+                }
+                else if(opcao_usuario == 3){
+                    pessoa = new usuario();
+                    System.out.println("Editanto usuário");
+                    System.out.print("Informe o CPF no formato '000.000.000-00': ");
+                    pessoa.setCpf(ler.next());
+                    usuario.consultar_usuario(pessoa);
+                    if(pessoa.getNome().equals(null)){
+                        System.out.println("Algum problema aconteceu ...");
+                    }else{
+                        System.out.println("Nome atual é:"+pessoa.getNome());
+                        System.out.println("Quer editar o nome? [s/n]");
+                        ler.nextLine();
+                        String op = ler.nextLine();
+                        if(op.equals("S")||op.equals("s")){                           
+                            System.out.print("Novo nome: ");
+                            pessoa.setNome(ler.nextLine());
+                        }
+                        
+                        System.out.println("Email atual é:"+pessoa.getEmail());
+                        System.out.println("Quer editar o email? [s/n]");
+                        op = ler.nextLine();
+                        if(op.equals("S")||op.equals("s")){
+                            
+                            System.out.print("Novo email: ");
+                            pessoa.setEmail(ler.next());
+                        }
+                        ler.nextLine();
+                        System.out.println("Senha atual é:"+pessoa.getSenhaEncrypted());
+                        System.out.println("Quer editar a senha? [s/n]");
+                        op = ler.nextLine();
+                        if(op.equals("S")||op.equals("s")){
+                            
+                            System.out.print("Nova senha: ");
+                            pessoa.setSenha(ler.nextLine());
+                        }
+                        usuario.editarUsuario(pessoa);
+                    }
+
                 }
                 break;
 

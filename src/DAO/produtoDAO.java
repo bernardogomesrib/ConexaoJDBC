@@ -6,11 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import db.conexao;
-import entity.produto;
+import entity.Produto;
 
 public class produtoDAO {
 
-    public void cadastrar_produto (produto produto) {
+    public void cadastrar_produto (Produto produto) {
         String query = "INSERT INTO produto (descricao, preco) VALUES (?, ?)"; 
         
         conexao nova_conexao = new conexao();
@@ -27,7 +27,7 @@ public class produtoDAO {
         }
     }
 
-    public void consultar_produto(produto produto) {
+    public void consultar_produto(Produto produto) {
         
         String query = "SELECT descricao, preco FROM produto WHERE codigo = '" + produto.getCodigo() + "'";
 
